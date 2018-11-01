@@ -19,7 +19,7 @@ To forecast solar irradiance, lagged predictors from five variables were constru
 To identify potential lagged predictors to derive from these variables, their correlation with solar irradiance was considered. It was found that, apart from the hour variable, which has a consistently low correlation, for at least two variables, lags 1-4 had a correlation greater than 0.5. Although any lagged predictors derived from hours could be omitted, it was decided they should remain, since they may help detrend seasonality issues from the time series forecasts.
 
 ## Methodology
-80% of the data os used for training (and cross-validation) and 20% for testing. However, in order to keep time series dependencies, rather than randomly sampling the test set, the latest 20% of the time sequence is chosen as the test data sequence.
+80% of the data is used for training (and cross-validation) and 20% for testing. However, in order to keep time series dependencies, rather than randomly sampling the test set, the latest 20% of the time sequence is chosen as the test data sequence.
 
 For cross-validation: The training time series data is partitioned into 10 folds, each with a training set and a randomly sampled test sequence (not a test set). This differs from conventional k-fold cross validation in that test sequences are randomly sampled in each fold; rather than individual training data points. This method is preferred since it better preserves the time dependencies in the test and training data within each fold. The comparative performance of different hyperparameter value combinations is evaluated on each model using one step ahead MSE performance.
 
