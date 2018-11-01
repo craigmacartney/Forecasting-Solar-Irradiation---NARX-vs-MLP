@@ -9,4 +9,4 @@ its greater ability to model non-linear time dependencies in time series data
 
 
 ## References
-A. Alzahrani, J. W. Kimball, and C. Dagli, "Predicting Solar Irradiance Using Time Series Neural Networks," in Complex Adaptive Systems, Philadelphia, PA, 2014, pp. 623 – 628.
+[1] A. Alzahrani, J. W. Kimball, and C. Dagli, "Predicting Solar Irradiance Using Time Series Neural Networks," in Complex Adaptive Systems, Philadelphia, PA, 2014, pp. 623 – 628.
