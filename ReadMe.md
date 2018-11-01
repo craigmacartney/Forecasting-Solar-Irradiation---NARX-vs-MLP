@@ -30,11 +30,38 @@ The “Levenberg-Marquardt” (LM) function is selected to update the weights fo
 
 Training NARX and MLP using LM usually begins with setting random weight values. This avoids networks being stuck in the same local minimum each time they are trained. Each model then follows their respective backpropagation algorithms to train. When informally training both models, it was noticed that the difference between the training error and the test error monotonically diverges over time. This means that after many training epochs the model no longer improves in test accuracy and overfits the data. This may be prevented with early stopping based on certain criteria.
 
-The elected stopping criterion is that based on the validation error increasing over successive steps, as mentioned in [5]. More specifically, we select a maximum of 10 validation error increases (alongside a maximum of 30 epochs and a minimum gradient of 1e-5) as stopping criterion in cross validation and final training/testing.
-We also undertook a hyperparameter grid search to find the optimal learning rate, momentum and size of the hidden layers. This can increase the learning speed, help avoid local minima and improve generalization and performance of our model respectively.
-Sliding window
-Choosing the optimal sliding window size for each model is important as the cyclical nature of the solar irradiance time series trend may mean certain lagged predictors of a given variable are more useful for predicting solar irradiance than others. More specifically, to ensure the best performance of our models, we need to use cross-validation to select the optimal sliding window of n lagged exogenous predictors (y(t-1),...y(t-n), u(t-1),... u(t-n) for an equation of the form:
+The elected stopping criterion is that based on the validation error increasing over successive steps, as mentioned in [5]. More specifically, a maximum of 10 validation error increases are selected (alongside a maximum of 30 epochs and a minimum gradient of 1e-5) as stopping criterion in cross validation and final training/testing. A hyperparameter grid search is also undertaken to find the optimal learning rate, momentum and size of the hidden layers. This can increase the learning speed, help avoid local minima and improve generalization and performance of our model respectively.
+
+## Sliding window
+Choosing the optimal sliding window size for each model is important as the cyclical nature of the solar irradiance time series trend may mean certain lagged predictors of a given variable are more useful for predicting solar irradiance than others. More specifically, to ensure the best performance of each model, cross-validation is required to select the optimal sliding window of n lagged exogenous predictors (y(t-1),...y(t-n), u(t-1),... u(t-n) for an equation of the form:
+
 y(t) = f(y(t-1) +y(t-2)+... y(t-n) + u(t-1) + u(t-2)...u(t-n))
+
+
+## Results, Findings & Evaluation
+Cross-validation results
+
+As per the FINALCROSSVALRESULTS.mat file, the lowest MSEs, for the hyperparameter combination where the two models perform best, are when the window is restricted to a size of two lags and the hidden layer size is limited to twenty neurons. This is consistent with [1].
+
+NARX tends to favour a lower learning rate and momentum relative to MLP. That being said, across all hyperparameter combinations, there was not a large performance difference. For NARX and MLP there was only a 9.7% and 5.5% MSE test difference between the most and least optimal hyperparameter combination.
+
+
+Comparison of final training and test results
+
+As expected, NARX significantly outperforms MLP in forecasting future levels of solar irradiation one step ahead. The two models have a test MSE performance of 0.0116 and 0.0226 respectively.
+
+Yet the absolute values for MSE performance are low for both algorithms, and uncontrolled factors may contribute to performance differences between them. For example, the random setting of initial weight values in each model may lead to significant performance differences between different training runs.
+
+Further, looking at the respective train/test performance graphs for each algorithm, it was noticed that the difference in training and test performance (the red and blue lines) for MLP is much greater than it is for NARX, suggesting more overfitting under MLP. And that the training and test performance diverges in a much earlier epoch for MLP than it does for NARX. This may mean that differences in performance between the two algorithms are down to suboptimal stopping criterion when training MLP – and not superior test performance under NARX.
+
+Finally, it should be noted that some of the performance differences between the two algorithms may be attributed to suboptimal hyperparameter value choices – as the full hyperparameter space has not been fully searched through the cross-validation grid search.
+
+# Conclusion, Lessons learned and Further work
+NARX outperforms MLP in forecasting solar irradiation time series. This is likely down to its greater ability to model time series dependencies in data.
+
+Two major lessons are also identified in cross validating Neural Networks that model time series data. The first is that standard cross-validation techniques, such as K-folds, are not appropriate for training/cross validating time series models since these techniques remove the time dependent nature from the data, so time series alternatives that preserve time dependency need to be used. The second is that, in addition to finding the optimal hyperparameter values for each model through cross-validation, it is also important to identify the optimal training window size to train the model with.
+
+In the evaluation section, confounding factors were identified (stopping criterion, initial weight values and hyperparameter values) that may have contributed to performance differences between NARX and MLP. Future work could focus on further optimizing/controlling for these values through cross-validation.
 
 
 ## References
