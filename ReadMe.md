@@ -2,13 +2,17 @@
 
 Submitted as part of the coursework for the Neural Computing module for the MSc in Data Science at City, University of London.
 
+The main source code can be located in the Matlab file, MLPNARXTIMESERIESFINALSUBMISSION.m 
+
+## Abstract
 This is a comparitive study, presenting a critical evaluation of two algorithm models, the Nonlinear autoregressive exogenous model (NARX) and multilayer perceptron (MLP) in a supervised time series regression task to forecast solar irradiation levels. Variations of the two algorithms are evaluated, varying their hyperparameters in a grid search manner, and validated through cross validation of time series training and test sequences. The tested results from the best evaluated models are compared by looking at the one step ahead forecast mean squared error (MSE) performance. NARX is found to have a considerable performance advantage over MLP in such a task.
+
 
 ## Hypothesis
 The initial hypothesis is that NARX is expected to perform better than MLP in forecasting solar radiation because of its greater ability to model non-linear time dependencies in time series data
 
 ## Initial analysis and data description
-The data is that of the hourly irradiance levels of the Vichy Rolla National Airport’s photovoltaic station in 2009. This is the same data used in a previous NARX study to predict solar irradiation [1].
+The data (contained in solarFINAL2.csv) is that of the hourly irradiance levels of the Vichy Rolla National Airport’s photovoltaic station in 2009. This is the same data used in a previous NARX study to predict solar irradiation [1].
 
 In the Solar_viz.m file, the trend of solar irradiance is plotted over time to identify any seasonality or stationarity related issues, which may hinder the performance of neural networks (as outlined in [2]).
 
