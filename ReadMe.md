@@ -1,5 +1,7 @@
 # A Comparative Study in forecasting solar irradiation level using Non-linear Autoregressive Exogenous Models and Multilayer Perceptron
 
+Submitted as part of the coursework for the Neural Computing module, as part of the MSc in Data Science at City, University of London.
+
 This is a comparitive study, presenting a critical evaluation of two algorithm models, the Nonlinear autoregressive exogenous model (NARX) and multilayer perceptron (MLP) in a supervised time series regression task to forecast solar irradiation levels. Variations of the two algorithms are evaluated, varying their hyperparameters in a grid search manner, and validated through cross validation of time series training and test sequences. The tested results from the best evaluated models are compared by looking at the one step ahead forecast mean squared error (MSE) performance. NARX is found to have a considerable performance advantage over MLP in such a task.
 
 ## Hypothesis
