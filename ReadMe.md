@@ -48,15 +48,15 @@ NARX tends to favour a lower learning rate and momentum relative to MLP. That be
 
 Comparison of final training and test results
 
-As expected, NARX significantly outperforms MLP in forecasting future levels of solar irradiation one step ahead. The two models have a test MSE performance of 0.0116 and 0.0226 respectively.
+As expected, NARX significantly outperforms MLP in forecasting future levels of solar irradiation one step ahead. The two models have a test MSE performance of 0.0116 and 0.0226 respectively, as per the FINALTEST....mat files.
 
 Yet the absolute values for MSE performance are low for both algorithms, and uncontrolled factors may contribute to performance differences between them. For example, the random setting of initial weight values in each model may lead to significant performance differences between different training runs.
 
-Further, looking at the respective train/test performance graphs for each algorithm, it was noticed that the difference in training and test performance (the red and blue lines) for MLP is much greater than it is for NARX, suggesting more overfitting under MLP. And that the training and test performance diverges in a much earlier epoch for MLP than it does for NARX. This may mean that differences in performance between the two algorithms are down to suboptimal stopping criterion when training MLP – and not superior test performance under NARX.
+Further, looking at the respective train/test performance graphs for each algorithm, contained within the .fig files, it was noticed that the difference in training and test performance (the red and blue lines) for MLP is much greater than it is for NARX, suggesting more overfitting under MLP. And that the training and test performance diverges in a much earlier epoch for MLP than it does for NARX. This may mean that differences in performance between the two algorithms are down to suboptimal stopping criterion when training MLP – and not superior test performance under NARX.
 
 Finally, it should be noted that some of the performance differences between the two algorithms may be attributed to suboptimal hyperparameter value choices – as the full hyperparameter space has not been fully searched through the cross-validation grid search.
 
-# Conclusion, Lessons learned and Further work
+## Conclusion, Lessons learned and Further work
 NARX outperforms MLP in forecasting solar irradiation time series. This is likely down to its greater ability to model time series dependencies in data.
 
 Two major lessons are also identified in cross validating Neural Networks that model time series data. The first is that standard cross-validation techniques, such as K-folds, are not appropriate for training/cross validating time series models since these techniques remove the time dependent nature from the data, so time series alternatives that preserve time dependency need to be used. The second is that, in addition to finding the optimal hyperparameter values for each model through cross-validation, it is also important to identify the optimal training window size to train the model with.
